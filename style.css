@@ -40,3 +40,109 @@ header {
         letter-spacing: 2px;
     }
 }
+
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.checklist-container h2 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+.item-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.item-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.item-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: #aaa;
+}
+
+.item-card input[type="checkbox"] {
+    /* ซ่อน checkbox เดิม */
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.item-card label {
+    flex-grow: 1;
+    font-size: 1.2em;
+    color: #555;
+    cursor: pointer;
+    padding-left: 30px; /* เว้นที่สำหรับ custom checkbox */
+    position: relative;
+    text-align: left;
+}
+
+/* Custom Checkbox */
+.item-card label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #999;
+    background-color: #fff;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+/* Custom Checkmark */
+.item-card label::after {
+    content: '✔';
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    font-size: 14px;
+    color: #fff;
+    transition: transform 0.2s ease;
+}
+
+/* เมื่อ Checkbox ถูกเลือก */
+.item-card input[type="checkbox"]:checked + label {
+    color: #007bff; /* สีข้อความเปลี่ยน */
+    text-decoration: line-through; /* ขีดฆ่า */
+}
+
+.item-card input[type="checkbox"]:checked + label::before {
+    background-color: #007bff; /* สีพื้นหลัง checkbox เปลี่ยน */
+    border-color: #007bff;
+}
+
+.item-card input[type="checkbox"]:checked + label::after {
+    transform: translateY(-50%) scale(1); /* แสดงเครื่องหมายถูก */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+    .item-list {
+        grid-template-columns: 1fr;
+    }
+}
