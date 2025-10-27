@@ -138,3 +138,93 @@ main {
 
 /* Responsive design for smaller screens */
 /* ลบ media query ที่ไม่จำเป็นออก */
+
+
+/* --- Bag Selection Styles --- */
+.bag-selection-container {
+    margin-top: 40px;
+}
+
+.bag-selection-container h2 {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 2em;
+    color: #333;
+}
+
+.bag-group {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    text-align: left;
+}
+
+.bag-group h3 {
+    font-size: 1.5em;
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 5px;
+}
+
+.bag-type-label {
+    font-size: 0.7em;
+    font-weight: normal;
+    color: #6c757d;
+}
+
+.bag-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.bag-checkbox {
+    /* ซ่อน checkbox เดิม */
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.bag-label {
+    display: inline-block;
+    padding: 10px 15px;
+    border: 2px solid #007bff; /* สีขอบหลัก */
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #fff;
+    color: #007bff;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    user-select: none; /* ป้องกันการเลือกข้อความ */
+}
+
+.bag-label:hover {
+    background-color: #e9f5ff;
+}
+
+/* เมื่อ Checkbox ถูกเลือก */
+.bag-checkbox:checked + .bag-label {
+    background-color: #007bff; /* สีพื้นหลังเมื่อเลือก */
+    color: #fff; /* สีข้อความเมื่อเลือก */
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* เพิ่มเงาให้ดูมีมิติ */
+}
+
+/* Responsive adjustment for bag options */
+@media (max-width: 480px) {
+    .bag-options {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .bag-label {
+        width: 100%;
+        text-align: center;
+    }
+}
