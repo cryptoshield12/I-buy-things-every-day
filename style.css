@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@700&display=swap');
+
+body {
+    font-family: 'Sarabun', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9; /* สีพื้นหลังอ่อนๆ */
+    text-align: center; /* จัดให้เนื้อหาทั้งหมดอยู่ตรงกลาง */
+}
+
+header {
+    padding: 20px 0;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6); /* พื้นหลังไล่เฉดสี */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* เงาด้านล่าง */
+    margin-bottom: 30px;
+}
+
+.elegant-title {
+    font-size: 3.5em; /* ตัวอักษรใหญ่ */
+    font-weight: 700;
+    color: #4a4a4a; /* สีเทาเข้มหรูหรา */
+    text-transform: uppercase; /* ตัวพิมพ์ใหญ่ทั้งหมด */
+    letter-spacing: 3px; /* ระยะห่างตัวอักษร */
+
+    /* สร้างมิติและเงาที่หรูหรา */
+    text-shadow: 
+        1px 1px 0 #fff, 
+        2px 2px 0 #ccc,
+        3px 3px 5px rgba(0, 0, 0, 0.3); /* เงาสามมิติ */
+    
+    display: inline-block; /* ให้อยู่ในบรรทัดเดียวกัน (ถ้ามีองค์ประกอบอื่น) และจัดกลาง */
+    margin: 0;
+    padding: 0 20px;
+}
+
+/* เพิ่ม responsive design สำหรับมือถือ */
+@media (max-width: 600px) {
+    .elegant-title {
+        font-size: 2em;
+        letter-spacing: 2px;
+    }
+}
