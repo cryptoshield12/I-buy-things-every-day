@@ -146,12 +146,14 @@ main {
 }
 
 .bag-selection-container h2 {
-    border-bottom: 2px solid #ccc;
+    /* ปรับสไตล์ให้เด่นและหรูหราขึ้น */
+    border-bottom: 3px solid #007bff; /* ใช้สีน้ำเงินให้เข้ากับปุ่ม */
     padding-bottom: 10px;
     margin-bottom: 20px;
     text-align: left;
-    font-size: 2em;
-    color: #333;
+    font-size: 2.2em; /* เพิ่มขนาดเล็กน้อย */
+    color: #007bff; /* ใช้สีน้ำเงิน */
+    font-weight: 700;
 }
 
 .bag-group {
