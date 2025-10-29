@@ -1,1 +1,49 @@
+/* ตั้งค่าฟอนต์พื้นฐาน */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* สีพื้นหลังโดยรวม */
+    font-family: 'Sarabun', sans-serif; /* ใช้ฟอนต์ Sarabun เพื่อความสวยงาม */
+}
 
+/* สไตล์สำหรับจำลองกระดาษ */
+#paper {
+    width: 90%;
+    max-width: 800px; /* จำกัดความกว้างของกระดาษ */
+    min-height: 100vh; /* ให้กระดาษสูงเต็มหน้าจอ */
+    margin: 20px auto;
+    padding: 30px 40px; /* เว้นขอบกระดาษ */
+    background-color: #fff; /* พื้นหลังสีขาว */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* เงาให้ดูเหมือนกระดาษ */
+    
+    /* สร้างเส้นบรรทัดแนวนอน */
+    background-image: 
+        /* เส้นหัวกระดาษ (เส้นแรกที่ชิดขอบมากกว่าปกติ) */
+        linear-gradient(to bottom, transparent 20px, #a8d5ff 20px, #a8d5ff 21px, transparent 21px),
+        /* เส้นบรรทัดปกติ (สีน้ำเงินอ่อน #a8d5ff) */
+        linear-gradient(to bottom, #a8d5ff 1px, transparent 1px);
+    
+    background-size: 100% 30px; /* กำหนดระยะห่างระหว่างบรรทัดเป็น 30px */
+    background-position: 0 50px; /* เริ่มต้นเส้นแรกที่ 50px จากด้านบน */
+    
+    /* ปรับ padding ด้านบนเพื่อรองรับเส้นหัวกระดาษ */
+    padding-top: 50px;
+    line-height: 30px; /* ให้ความสูงของบรรทัดตรงกับระยะห่างของเส้น */
+    
+    /* เพื่อให้เห็นชัดว่าไม่มีข้อความหรือสัญลักษณ์ใด ๆ อยู่บนหน้า */
+    font-size: 1.2em;
+    color: transparent; /* ทำให้ข้อความที่มองไม่เห็น */
+}
+
+/* สำหรับมือถือ */
+@media (max-width: 600px) {
+    #paper {
+        width: 95%;
+        margin: 0 auto;
+        padding: 20px 20px;
+        background-size: 100% 25px; /* ลดระยะห่างบรรทัด */
+        background-position: 0 40px;
+        padding-top: 40px;
+        line-height: 25px;
+    }
+}
