@@ -65,3 +65,161 @@ body {
         line-height: 25px;
     }
 }
+
+/* ปรับสไตล์ของ #paper ให้ข้อความที่เพิ่มเข้าไปจัดเรียงตามเส้นบรรทัด */
+#paper {
+    padding-top: 50px;
+    line-height: 30px; /* ให้ความสูงของบรรทัดตรงกับระยะห่างของเส้น */
+    
+    /* ปรับให้ข้อความที่มองเห็นได้ */
+    color: #333; 
+}
+
+/* สไตล์สำหรับหัวข้อรอง (วัตถุดิบ/ขนาดถุง) */
+.pencil-text-secondary {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #36454F; /* สีดินสอ */
+    text-align: left;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #ccc; /* เส้นคั่นบางๆ */
+    padding-bottom: 5px;
+}
+
+/* สไตล์สำหรับรายการ Checklist */
+.checklist-container {
+    padding: 0 20px;
+    margin-top: 20px;
+}
+
+.item-list {
+    list-style: none;
+    padding: 0;
+}
+
+.item-card {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 0; /* ลบ margin เพื่อให้ชิดเส้นบรรทัด */
+    min-height: 30px; /* ความสูงเท่ากับ line-height ของกระดาษ */
+}
+
+.item-card input[type="checkbox"] {
+    /* ซ่อน checkbox เดิม */
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.item-card label {
+    flex-grow: 1;
+    font-size: 1.2em; /* ขนาดตัวอักษรให้พอดีกับบรรทัด */
+    color: #36454F; /* สีดินสอ */
+    cursor: pointer;
+    padding-left: 30px; /* เว้นที่สำหรับ custom checkbox */
+    position: relative;
+    text-align: left;
+    line-height: 30px; /* ให้ความสูงของ label ตรงกับบรรทัด */
+}
+
+/* Custom Checkbox (วงกลมเล็กๆ) */
+.item-card label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    border: 2px solid #36454F; /* ขอบสีดินสอ */
+    background-color: #fff;
+    border-radius: 50%; /* วงกลม */
+    transition: all 0.2s ease;
+}
+
+/* Custom Checkmark (เครื่องหมายถูก) */
+.item-card label::after {
+    content: '✓';
+    position: absolute;
+    left: 3px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    font-size: 12px;
+    color: #36454F; /* สีดินสอ */
+    transition: transform 0.2s ease;
+}
+
+/* เมื่อ Checkbox ถูกเลือก */
+.item-card input[type="checkbox"]:checked + label {
+    color: #888; /* สีจางลงเมื่อถูกเลือก */
+    text-decoration: line-through; /* ขีดฆ่า */
+}
+
+.item-card input[type="checkbox"]:checked + label::after {
+    transform: translateY(-50%) scale(1); /* แสดงเครื่องหมายถูก */
+}
+
+/* --- Bag Selection Styles --- */
+.bag-selection-container {
+    padding: 0 20px;
+    margin-top: 30px;
+}
+
+.pencil-text-tertiary {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #36454F;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.bag-group {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: left;
+}
+
+.bag-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.bag-checkbox {
+    /* ซ่อน checkbox เดิม */
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.bag-label {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #a8d5ff; /* ขอบสีน้ำเงินอ่อน */
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fff;
+    color: #36454F;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.bag-label:hover {
+    background-color: #e9f5ff;
+}
+
+/* เมื่อ Checkbox ถูกเลือก */
+.bag-checkbox:checked + .bag-label {
+    background-color: #a8d5ff; /* สีพื้นหลังเมื่อเลือก (สีเส้นบรรทัด) */
+    color: #36454F;
+    border-color: #a8d5ff;
+    font-weight: bold;
+}
