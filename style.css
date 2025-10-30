@@ -223,3 +223,45 @@ body {
     border-color: #a8d5ff;
     font-weight: bold;
 }
+
+/* --- Action Buttons Styles (Pencil 2B Style) --- */
+.action-buttons {
+    text-align: center;
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+.pencil-button {
+    background-color: transparent;
+    color: #36454F; /* สีดินสอ */
+    border: 2px solid #36454F; /* ขอบหนาคล้ายเส้นดินสอ */
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 2px 2px 0px 0px rgba(54, 69, 79, 0.5); /* เงาเล็กน้อยคล้ายการวาดด้วยดินสอ */
+}
+
+.pencil-button:hover {
+    background-color: rgba(54, 69, 79, 0.05); /* สีจางๆ เมื่อโฮเวอร์ */
+    box-shadow: 1px 1px 0px 0px rgba(54, 69, 79, 0.7);
+}
+
+.pencil-button:active {
+    box-shadow: none;
+    transform: translate(2px, 2px);
+}
+
+.reset-button {
+    border-color: #d9534f; /* สีแดงอ่อนสำหรับรีเซ็ต */
+    color: #d9534f;
+    box-shadow: 2px 2px 0px 0px rgba(217, 83, 79, 0.5);
+}
+
+.reset-button:hover {
+    background-color: rgba(217, 83, 79, 0.05);
+    box-shadow: 1px 1px 0px 0px rgba(217, 83, 79, 0.7);
+}
