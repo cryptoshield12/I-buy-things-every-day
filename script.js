@@ -1,5 +1,31 @@
 // ฟังก์ชันสำหรับจัดการการเลือกขนาดถุง (Button-like Checkboxes)
 document.addEventListener('DOMContentLoaded', () => {
+    // ฟังก์ชันสำหรับจัดการการแสดงผลของ Input Field ของถุง
+    const bagCheckboxes = document.querySelectorAll('.bag-checkbox');
+
+    bagCheckboxes.forEach(checkbox => {
+        const extraInfoInput = document.querySelector(`.bag-extra-info[data-bag-id="${checkbox.id}"]`);
+        
+        // กำหนดให้ input field แสดง/ซ่อนตามสถานะ checkbox
+        if (extraInfoInput) {
+            extraInfoInput.style.display = checkbox.checked ? 'block' : 'none';
+        }
+
+        checkbox.addEventListener('change', function() {
+            if (extraInfoInput) {
+                if (this.checked) {
+                    extraInfoInput.style.display = 'block';
+                    extraInfoInput.focus();
+                } else {
+                    extraInfoInput.style.display = 'none';
+                    extraInfoInput.value = ''; // ล้างข้อมูลเมื่อยกเลิกการเลือก
+                }
+            }
+            console.log(`Bag size ${this.value} ${this.checked ? 'selected' : 'deselected'}`);
+        });
+    });
+
+    // ฟังก์ชันสำหรับจัดการรายการวัตถุดิบ (Checklist)
     const bagCheckboxes = document.querySelectorAll('.bag-checkbox');
 
     bagCheckboxes.forEach(checkbox => {
@@ -32,6 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.bag-checkbox').forEach(checkbox => {
             checkbox.checked = false;
         });
+
+        // ล้างข้อมูลและซ่อน Input Field ของถุง
+        document.querySelectorAll('.bag-extra-info').forEach(input => {
+            input.value = '';
+            input.style.display = 'none';
+        });
         
         console.log('All items and bag selections have been reset.');
     });
@@ -52,7 +84,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // รวบรวมขนาดถุงที่ถูกเลือก
         document.querySelectorAll('.bag-checkbox:checked').forEach(checkbox => {
-            selectedItems.push(checkbox.value);
+            const extraInfoInput = document.querySelector(`.bag-extra-info[data-bag-id="${checkbox.id}"]`);
+            let bagItem = checkbox.value;
+
+            if (extraInfoInput && extraInfoInput.value.trim() !== '') {
+                bagItem += ` (${extraInfoInput.value.trim()})`;
+            }
+
+            selectedItems.push(bagItem);
         });
 
         if (selectedItems.length === 0) {

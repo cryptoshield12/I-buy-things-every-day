@@ -328,3 +328,44 @@ body {
         font-size: 1.2em;
     }
 }
+
+/* สไตล์สำหรับช่องข้อมูลเพิ่มเติมของถุง */
+.bag-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    /* ปรับให้รองรับ Input Field */
+    align-items: flex-start;
+}
+
+.bag-options > input[type="checkbox"] + label {
+    margin-bottom: 0; /* ลบ margin เดิมออก */
+}
+
+.bag-options > input[type="checkbox"] + label + .bag-extra-info {
+    display: none; /* ซ่อน Input Field ไว้ก่อน */
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 0.9em;
+    color: #36454F; /* สีดินสอ */
+    background-color: #f9f9f9;
+    /* สไตล์ให้เหมือนถูกเขียนด้วยดินสอ */
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.bag-options > input[type="checkbox"]:checked + label + .bag-extra-info {
+    display: block; /* แสดง Input Field เมื่อถูกเลือก */
+}
+
+/* ปรับปรุงการแสดงผลขนาดถุงบนมือถือให้ Input Field แสดงผลได้ดี */
+@media (max-width: 768px) {
+    .bag-options > input[type="checkbox"] + label + .bag-extra-info {
+        width: 95%; /* ให้ Input Field เต็มความกว้าง */
+        margin-left: 5px;
+    }
+}
