@@ -16,14 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ฟังก์ชันสำหรับจัดการรายการวัตถุดิบ (Checklist)
-    const itemCheckboxes = document.querySelectorAll('.item-card input[type="checkbox"]');
-    itemCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            console.log(`Item ${this.id} ${this.checked ? 'checked' : 'unchecked'}`);
-        });
-    });
-
     // --- ฟังก์ชันสำหรับปุ่ม ---
 
     // 1. ปุ่ม Reset
@@ -57,11 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // ดึงข้อความจาก label ที่เกี่ยวข้อง
             const label = document.querySelector(`label[for="${checkbox.id}"]`);
             // ดึงข้อมูลเพิ่มเติมจาก input field ที่เกี่ยวข้อง
+            // ใช้ ID ของ checkbox เพื่อหา input field ที่มี data-item-id ตรงกัน
             const extraInfoInput = document.querySelector(`.item-extra-info[data-item-id="${checkbox.id}"]`);
             
             if (label) {
                 let itemText = label.textContent.trim();
                 
+                // ตรวจสอบว่ามี input field และมีค่าหรือไม่
                 if (extraInfoInput && extraInfoInput.value.trim() !== '') {
                     itemText += ` (${extraInfoInput.value.trim()})`;
                 }
