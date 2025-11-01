@@ -1,37 +1,17 @@
 // ฟังก์ชันสำหรับจัดการการเลือกขนาดถุง (Button-like Checkboxes)
 document.addEventListener('DOMContentLoaded', () => {
-    // ฟังก์ชันสำหรับจัดการการแสดงผลของ Input Field ของถุง
-    const bagCheckboxes = document.querySelectorAll('.bag-checkbox');
-
-    bagCheckboxes.forEach(checkbox => {
-        const extraInfoInput = document.querySelector(`.bag-extra-info[data-bag-id="${checkbox.id}"]`);
-        
-        // กำหนดให้ input field แสดง/ซ่อนตามสถานะ checkbox
-        if (extraInfoInput) {
-            extraInfoInput.style.display = checkbox.checked ? 'block' : 'none';
-        }
-
+    // ฟังก์ชันสำหรับจัดการรายการวัตถุดิบ (Checklist)
+    const itemCheckboxes = document.querySelectorAll('.item-card input[type="checkbox"]');
+    itemCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('change', function() {
-            if (extraInfoInput) {
-                if (this.checked) {
-                    extraInfoInput.style.display = 'block';
-                    extraInfoInput.focus();
-                } else {
-                    extraInfoInput.style.display = 'none';
-                    extraInfoInput.value = ''; // ล้างข้อมูลเมื่อยกเลิกการเลือก
-                }
-            }
-            console.log(`Bag size ${this.value} ${this.checked ? 'selected' : 'deselected'}`);
+            console.log(`Item ${this.id} ${this.checked ? 'checked' : 'unchecked'}`);
         });
     });
 
-    // ฟังก์ชันสำหรับจัดการรายการวัตถุดิบ (Checklist)
+    // ฟังก์ชันสำหรับจัดการการเลือกขนาดถุง (Button-like Checkboxes)
     const bagCheckboxes = document.querySelectorAll('.bag-checkbox');
-
     bagCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('change', function() {
-            // ในอนาคตสามารถเพิ่มฟังก์ชันการทำงานที่ซับซ้อนขึ้นได้ที่นี่
-            // เช่น การอัปเดตรายการสรุปอัตโนมัติ
             console.log(`Bag size ${this.value} ${this.checked ? 'selected' : 'deselected'}`);
         });
     });
@@ -59,10 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
             checkbox.checked = false;
         });
 
-        // ล้างข้อมูลและซ่อน Input Field ของถุง
-        document.querySelectorAll('.bag-extra-info').forEach(input => {
+        // ล้างข้อมูลใน Input Field ของรายการวัตถุดิบ
+        document.querySelectorAll('.item-extra-info').forEach(input => {
             input.value = '';
-            input.style.display = 'none';
         });
         
         console.log('All items and bag selections have been reset.');
@@ -77,21 +56,23 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.item-card input[type="checkbox"]:checked').forEach(checkbox => {
             // ดึงข้อความจาก label ที่เกี่ยวข้อง
             const label = document.querySelector(`label[for="${checkbox.id}"]`);
+            // ดึงข้อมูลเพิ่มเติมจาก input field ที่เกี่ยวข้อง
+            const extraInfoInput = document.querySelector(`.item-extra-info[data-item-id="${checkbox.id}"]`);
+            
             if (label) {
-                selectedItems.push(label.textContent.trim());
+                let itemText = label.textContent.trim();
+                
+                if (extraInfoInput && extraInfoInput.value.trim() !== '') {
+                    itemText += ` (${extraInfoInput.value.trim()})`;
+                }
+                
+                selectedItems.push(itemText);
             }
         });
 
         // รวบรวมขนาดถุงที่ถูกเลือก
         document.querySelectorAll('.bag-checkbox:checked').forEach(checkbox => {
-            const extraInfoInput = document.querySelector(`.bag-extra-info[data-bag-id="${checkbox.id}"]`);
-            let bagItem = checkbox.value;
-
-            if (extraInfoInput && extraInfoInput.value.trim() !== '') {
-                bagItem += ` (${extraInfoInput.value.trim()})`;
-            }
-
-            selectedItems.push(bagItem);
+            selectedItems.push(checkbox.value);
         });
 
         if (selectedItems.length === 0) {
