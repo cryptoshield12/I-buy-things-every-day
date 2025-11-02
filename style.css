@@ -118,35 +118,38 @@ body {
     font-size: 1.2em; /* ขนาดตัวอักษรให้พอดีกับบรรทัด */
     color: #36454F; /* สีดินสอ */
     cursor: pointer;
-    padding-left: 30px; /* เว้นที่สำหรับ custom checkbox */
-    position: relative;
-    text-align: left;
-    line-height: 30px; /* ให้ความสูงของ label ตรงกับบรรทัด */
-}
-
-/* Custom Checkbox (วงกลมเล็กๆ) */
-.item-card label::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 15px;
-    height: 15px;
-    border: 2px solid #36454F; /* ขอบสีดินสอ */
-    background-color: #fff;
-    border-radius: 50%; /* วงกลม */
-    transition: all 0.2s ease;
-}
+	    padding-left: 0; /* ไม่ต้องเว้นที่สำหรับ custom checkbox ด้านหน้า */
+	    position: relative;
+	    text-align: left;
+	    line-height: 30px; /* ให้ความสูงของ label ตรงกับบรรทัด */
+	}
 	
-	/* Custom Checkmark (เครื่องหมายถูก) */
-	.item-card label::after {
-	    content: '✓';
+	/* Custom Checkbox (วงกลมเล็กๆ) - ซ่อนหรือย้ายไปด้านหลัง */
+	.item-card label::before {
+	    content: '';
 	    position: absolute;
-	    left: 3px;
+	    /* ย้ายไปด้านหลังข้อความ */
+	    right: 0; 
+	    left: auto;
+	    top: 50%;
+	    transform: translateY(-50%);
+	    width: 0; /* ซ่อนวงกลมเดิม */
+	    height: 0;
+	    border: none;
+	    background-color: transparent;
+	    border-radius: 50%;
+	    transition: all 0.2s ease;
+	}
+	
+	/* Custom Checkmark (เครื่องหมายถูก) - ย้ายไปด้านหลังข้อความ */
+	.item-card label::after {
+	    content: '✅'; /* ใช้ emoji แทน ✓ */
+	    position: absolute;
+	    right: -25px; /* ตำแหน่งด้านหลังข้อความ */
+	    left: auto;
 	    top: 50%;
 	    transform: translateY(-50%) scale(0);
-	    font-size: 12px;
+	    font-size: 1.2em;
 	    color: #28a745; /* สีเขียวสำหรับเครื่องหมายถูก */
 	    transition: transform 0.2s ease;
 	}
@@ -158,7 +161,7 @@ body {
 	}
 	
 	.item-card input[type="checkbox"]:checked + label::before {
-	    border-color: #28a745; /* ขอบสีเขียวเมื่อถูกเลือก */
+	    border-color: transparent; /* ไม่แสดงขอบ */
 	}
 	
 	.item-card input[type="checkbox"]:checked + label::after {
